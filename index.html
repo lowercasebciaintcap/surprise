@@ -29,7 +29,6 @@
 
   h1 {
     margin-top: 0;
-    font-size: 2em;
   }
 
   .scramble {
@@ -39,6 +38,20 @@
     padding: 10px;
     border-radius: 12px;
     margin: 15px 0;
+  }
+
+  .hint-btn {
+    background: none;
+    border: none;
+    color: #ff3c8e;
+    font-size: 1em;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .hint {
+    display: none;
+    margin-bottom: 10px;
   }
 
   input {
@@ -86,7 +99,8 @@
   .frame img {
     width: 100%;
     border-radius: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    display: block;
   }
 
   .hearts {
@@ -101,23 +115,24 @@
 <div class="container">
   <h1>Unscramble This 💖</h1>
 
-  <p>Hint: something sweet 🍓</p>
-
   <div class="scramble">wearysbtrr</div>
+
+  <button class="hint-btn" onclick="toggleHint()">Hint 💡</button>
+  <div class="hint" id="hint">It’s something sweet 🍓</div>
 
   <input type="text" id="answer" placeholder="type here..." />
   <br>
   <button onclick="checkWord()">Unlock 💝</button>
 
-  <div class="error" id="error">nooope 😝 try again</div>
+  <div class="error" id="error">nawww 😝 try again</div>
 
   <div class="gallery" id="gallery">
     <h2>For You 💕</h2>
 
     <div class="frame">
-      <img src="pic1.jpg" alt="memory 1">
-      <img src="pic2.jpg" alt="memory 2">
-      <img src="pic3.jpg" alt="memory 3">
+      <img src="pic1.jpg">
+      <img src="pic2.jpg">
+      <img src="pic3.jpg">
     </div>
 
     <div class="hearts">💗💗💗</div>
@@ -125,6 +140,11 @@
 </div>
 
 <script>
+  function toggleHint() {
+    const hint = document.getElementById("hint");
+    hint.style.display = hint.style.display === "none" ? "block" : "none";
+  }
+
   function checkWord() {
     const input = document.getElementById("answer").value.toLowerCase().trim();
     const error = document.getElementById("error");
