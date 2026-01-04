@@ -1,162 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>For You 💕</title>
 
 <style>
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #ffd6e8, #ffeaf3);
-    font-family: "Comic Sans MS", "Segoe UI", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #b3005e;
-  }
+body {
+  background: #ffe6f2;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+}
 
-  .container {
-    background: #fff0f7;
-    border: 3px solid #ff8fc7;
-    border-radius: 25px;
-    padding: 30px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.25);
-  }
+.box {
+  background: #fff0f7;
+  border: 3px solid #ff99cc;
+  border-radius: 25px;
+  padding: 25px;
+  max-width: 500px;
+  margin: auto;
+}
 
-  h1 {
-    margin-top: 0;
-  }
+h1 {
+  color: #cc0066;
+}
 
-  .scramble {
-    font-size: 1.8em;
-    letter-spacing: 3px;
-    background: #ffe1ef;
-    padding: 10px;
-    border-radius: 12px;
-    margin: 15px 0;
-  }
+.scramble {
+  font-size: 26px;
+  background: #ffd9ec;
+  padding: 12px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
 
-  .hint-btn {
-    background: none;
-    border: none;
-    color: #ff3c8e;
-    font-size: 1em;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ff99cc;
+  width: 70%;
+  font-size: 16px;
+  text-align: center;
+}
 
-  .hint {
-    display: none;
-    margin-bottom: 10px;
-  }
+button {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  background: #ff66a3;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-  input {
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #ff8fc7;
-    width: 70%;
-    font-size: 1em;
-    text-align: center;
-  }
+button:hover {
+  background: #ff3385;
+}
 
-  button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    background: #ff5fa2;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-  }
+#error {
+  color: #ff3366;
+  display: none;
+  margin-top: 10px;
+}
 
-  button:hover {
-    background: #ff3c8e;
-  }
+#photos {
+  display: none;
+  margin-top: 25px;
+}
 
-  .error {
-    margin-top: 10px;
-    color: #ff3366;
-    display: none;
-  }
+.frame {
+  border: 4px dashed #ff99cc;
+  border-radius: 20px;
+  padding: 15px;
+  background: white;
+}
 
-  .gallery {
-    display: none;
-    margin-top: 25px;
-  }
-
-  .frame {
-    border: 4px dashed #ff8fc7;
-    border-radius: 20px;
-    padding: 15px;
-    background: #fff;
-  }
-
-  .frame img {
-    width: 100%;
-    border-radius: 15px;
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .hearts {
-    margin-top: 10px;
-    font-size: 1.5em;
-  }
+.frame img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="box">
   <h1>Unscramble This 💖</h1>
 
   <div class="scramble">wearysbtrr</div>
 
-  <button class="hint-btn" onclick="toggleHint()">Hint 💡</button>
-  <div class="hint" id="hint">It’s something sweet 🍓</div>
-
-  <input type="text" id="answer" placeholder="type here..." />
+  <input id="answer" placeholder="type here 💕">
   <br>
-  <button onclick="checkWord()">Unlock 💝</button>
+  <button onclick="unlock()">Unlock 💝</button>
 
-  <div class="error" id="error">nawww 😝 try again</div>
+  <div id="error">nawww 😝 try again</div>
 
-  <div class="gallery" id="gallery">
+  <div id="photos">
     <h2>For You 💕</h2>
-
     <div class="frame">
-<img src="./images/pic1.jpg">
-<img src="./images/pic2.jpg">
-<img src="./images/pic3.jpg">
+      <img src="photo1.jpg">
+      <img src="photo2.jpg">
+      <img src="photo3.jpg">
     </div>
-
-    <div class="hearts">💗💗💗</div>
   </div>
 </div>
 
 <script>
-  function toggleHint() {
-    const hint = document.getElementById("hint");
-    hint.style.display = hint.style.display === "none" ? "block" : "none";
+function unlock() {
+  const val = document.getElementById("answer").value.toLowerCase().trim();
+  if (val === "strawberry") {
+    document.getElementById("photos").style.display = "block";
+    document.getElementById("error").style.display = "none";
+  } else {
+    document.getElementById("error").style.display = "block";
   }
-
-  function checkWord() {
-    const input = document.getElementById("answer").value.toLowerCase().trim();
-    const error = document.getElementById("error");
-    const gallery = document.getElementById("gallery");
-
-    if (input === "strawberry") {
-      gallery.style.display = "block";
-      error.style.display = "none";
-    } else {
-      error.style.display = "block";
-    }
-  }
+}
 </script>
 
 </body>
